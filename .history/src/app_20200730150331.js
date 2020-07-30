@@ -50,10 +50,15 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({error})
         }
+        console.log('geocode excecuted well')
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
                 return res.send({error})
             }
+            console.log(forecastData)
+            console.log(location)
+            console.log(req.query.address)
+            console.log('forecast excecuted ell')
             res.send({
                 forecast: forecastData,
                 location,

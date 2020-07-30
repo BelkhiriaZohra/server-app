@@ -41,6 +41,7 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    console.log('Hello World')
     if(!req.query.address){ 
         return res.send({
             error: 'You must provide an address!'
@@ -50,10 +51,14 @@ app.get('/weather', (req, res) => {
         if (error) {
             return res.send({error})
         }
+    
         forecast(latitude, longitude, (error, forecastData) => {
             if (error) {
                 return res.send({error})
             }
+            console.log(forecastData)
+            console.log(location)
+            console.log(req.query.address)
             res.send({
                 forecast: forecastData,
                 location,
@@ -79,6 +84,9 @@ app.get('*', (req, res) => {
     })
 })
 
+app.get('/test', (req, res) => {
+    console.log('Testing!')
+})
 
 app.listen(port, () => {
     console.log('Server is up on port '+ port)
